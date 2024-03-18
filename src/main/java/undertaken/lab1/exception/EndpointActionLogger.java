@@ -22,6 +22,8 @@ public class EndpointActionLogger {
     }
 
     public void logUpdateTextAction(Long id, String newText) {
-        logger.info("Updating text with ID {}: New text - {}", id, newText);
+        if (newText != null) {
+            logger.info("Updating text with ID {}: New text - {}", id, newText);
+        }
     }
 }
