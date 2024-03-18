@@ -23,7 +23,7 @@ public class LanguageCache {
     public void printCache() {
         logger.info("Cache content: ");
         for (Map.Entry<String, String> entry : cache.entrySet()) {
-            logger.info("Text: " + entry.getKey() + ", Language: " + entry.getValue());
+            logger.info("Text: {}, Language {} ", entry.getKey(), entry.getValue());
         }
     }
 }
