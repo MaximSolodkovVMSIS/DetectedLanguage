@@ -1,0 +1,31 @@
+package undertaken.lab1.exception;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Component
+public class EndpointActionLogger {
+    private final Logger logger = LoggerFactory.getLogger(EndpointActionLogger.class);
+
+    public void logDetectLanguageAction(String text) {
+        logger.info("Detecting language for text: {}", text);
+    }
+
+    public void logAddTextAction(String text) {
+        logger.info("Adding text: {}", text);
+    }
+
+    public void logDeleteTextAction(String text) {
+        logger.info("Deleting text: {}", text);
+    }
+
+    public void logDeleteLanguageAction(String language) {
+        logger.info("Deleting language: {}", language);
+    }
+
+    public void logUpdateTextAction(Long id, String newText) {
+        logger.info("Updating text with ID {}: New text - {}", id, newText);
+    }
+}
