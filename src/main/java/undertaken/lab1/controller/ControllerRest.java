@@ -46,6 +46,7 @@ public class ControllerRest {
 
     @GetMapping("/api/v1/detect-language")
     public String detectLanguage(@RequestParam String text) {
+        endpointActionLogger.logDetectLanguageAction(text);
         String cachedLanguage = cache.get(text);
         if (cachedLanguage != null) {
             return cachedLanguage;

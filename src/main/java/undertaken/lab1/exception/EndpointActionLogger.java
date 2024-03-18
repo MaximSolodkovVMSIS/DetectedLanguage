@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 public class EndpointActionLogger {
     private final Logger logger = LoggerFactory.getLogger(EndpointActionLogger.class);
 
+    public void logDetectLanguageAction(String text) {
+        logger.info("Detecting language for text: {}", text);
+    }
+
     public void logAddTextAction(String text) {
         logger.info("Adding text: {}", text);
     }
