@@ -9,10 +9,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/languages")
-public class LanguageController {
+public class ControllerLanguage {
     private final UsefulTextLanguage usefulTextLanguage;
 
-    public LanguageController(UsefulTextLanguage usefulTextLanguage) {
+    public ControllerLanguage(UsefulTextLanguage usefulTextLanguage) {
         this.usefulTextLanguage = usefulTextLanguage;
     }
 

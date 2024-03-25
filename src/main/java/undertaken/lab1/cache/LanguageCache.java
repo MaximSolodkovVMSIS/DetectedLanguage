@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LanguageCache {
-    private final static int MAX_CACHE_SIZE = 3;
+    private final int MAX_CACHE_SIZE = 3;
 
     private final Map<String, String> cache = new LinkedHashMap<String, String>(MAX_CACHE_SIZE, 0.75f, true) { //коэф загрузки
         @Override
