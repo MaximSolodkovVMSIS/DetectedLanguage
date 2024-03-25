@@ -1,7 +1,7 @@
 package undertaken.lab1.service;
 
 import org.springframework.stereotype.Service;
-import undertaken.lab1.entity.LanguageEntity;
+import undertaken.lab1.entity.Language;
 import undertaken.lab1.repository.LanguageRepository;
 
 
@@ -13,12 +13,12 @@ public class NameLanguageService {
         this.languageRepository = languageRepository;
     }
 
-    public LanguageEntity findByName(String name) {
+    public Language findByName(String name) {
         return languageRepository.findByName(name);
     }
 
-    public LanguageEntity save(String name) {
-        LanguageEntity language = new LanguageEntity();
+    public Language save(String name) {
+        Language language = new Language();
         language.setName(name);
         return languageRepository.save(language);
     }

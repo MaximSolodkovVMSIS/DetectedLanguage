@@ -4,15 +4,15 @@ package undertaken.lab1.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "text_entity")
-public class TextEntity {
+@Table(name = "text")
+public class Text {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
     @ManyToOne
     @JoinColumn(name = "language_id")
-    private LanguageEntity language;
+    private Language language;
 
     public Long getId() {
         return id;
@@ -30,11 +30,11 @@ public class TextEntity {
         this.text = text;
     }
 
-    public LanguageEntity getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(LanguageEntity language) {
+    public void setLanguage(Language language) {
         this.language = language;
     }
 }

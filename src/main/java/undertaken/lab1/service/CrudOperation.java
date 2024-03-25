@@ -5,8 +5,8 @@ import java.util.List;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import undertaken.lab1.dto.LanguageDetectionRequest;
-import undertaken.lab1.entity.LanguageEntity;
-import undertaken.lab1.entity.TextEntity;
+import undertaken.lab1.entity.Language;
+import undertaken.lab1.entity.Text;
 import undertaken.lab1.repository.LanguageRepository;
 import undertaken.lab1.repository.TextRepository;
 
@@ -38,11 +38,11 @@ public class CrudOperation {
     public String addTextAndDetectLanguage(String text) {
         String apiKey = serviceApiKey.getApiKey();
         String detectedLanguage = languageDetectiveService.detectLanguage(new LanguageDetectionRequest(text), apiKey);
-        LanguageEntity language = nameLanguageService.findByName(detectedLanguage);
+        Language language = nameLanguageService.findByName(detectedLanguage);
     if (language == null) {
         language = nameLanguageService.save(detectedLanguage);
     }
-        TextEntity textLanguage = new TextEntity();
+        Text textLanguage = new Text();
         textLanguage.setText(text);
         textLanguage.setLanguage(language);
         textLanguageService.save(textLanguage);
@@ -51,7 +51,7 @@ public class CrudOperation {
     }
 
     public String deleteText(String text) {
-        TextEntity textLanguage = textRepository.findByText(text);
+        Text textLanguage = textRepository.findByText(text);
         textRepository.delete(textLanguage);
         return "Text deleted successfully";
     }
@@ -59,10 +59,10 @@ public class CrudOperation {
     @Transactional
 //из-за lazy подгрузки сеанс Hibernate(обычный сеанс который управляет чтением и записью) закрыт, избегаем ошибки LazyInitializationException
     public String deleteLanguageAndText(String languageName) {
-        LanguageEntity language = languageRepository.findByName(languageName);
+        Language language = languageRepository.findByName(languageName);
         if (language != null) {
             Hibernate.initialize(language.getTextLanguages()); //метод должен выполняться в рамках транзакции, заставляя Hibernate извлечь данные из базы данных до того, как сеанс будет закрыт
-            List<TextEntity> texts = language.getTextLanguages();
+            List<Text> texts = language.getTextLanguages();
             textRepository.deleteAll(texts);
             languageRepository.delete(language);
             return "Language and associated texts deleted successfully";
@@ -73,7 +73,7 @@ public class CrudOperation {
     }
 
     public String updateText(Long id, String newText) {
-        TextEntity text = textRepository.findById(id).orElse(null);
+        Text text = textRepository.findById(id).orElse(null);
 
         if (text != null) {
             text.setText(newText);

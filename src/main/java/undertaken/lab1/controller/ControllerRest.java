@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import undertaken.lab1.cache.LanguageCache;
 import undertaken.lab1.dto.LanguageDetectionRequest;
-import undertaken.lab1.entity.LanguageEntity;
-import undertaken.lab1.entity.TextEntity;
+import undertaken.lab1.entity.Language;
+import undertaken.lab1.entity.Text;
 import undertaken.lab1.model.UpdateTextModel;
 import undertaken.lab1.service.CrudOperation;
 import undertaken.lab1.exception.EndpointActionLogger;
@@ -54,12 +54,12 @@ public class ControllerRest {
         LanguageDetectionRequest request = new LanguageDetectionRequest(text);
         String detectedLanguage = languageDetectiveService.detectLanguage(request, apiKey);
 
-        LanguageEntity language = nameLanguageService.findByName(detectedLanguage);
+        Language language = nameLanguageService.findByName(detectedLanguage);
         if (language == null) {
             language = nameLanguageService.save(detectedLanguage);
         }
 
-        TextEntity textLanguage = new TextEntity();
+        Text textLanguage = new Text();
         textLanguage.setText(text);
         textLanguage.setLanguage(language);
         textLanguageService.save(textLanguage);

@@ -3,8 +3,8 @@ package undertaken.lab1.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
-import undertaken.lab1.entity.LanguageEntity;
-import undertaken.lab1.entity.TextEntity;
+import undertaken.lab1.entity.Language;
+import undertaken.lab1.entity.Text;
 import undertaken.lab1.repository.LanguageRepository;
 import undertaken.lab1.repository.TextRepository;
 
@@ -13,11 +13,11 @@ public class UsefulTextLanguage {
     private final TextRepository textRepository;
     private final LanguageRepository languageRepository;
 
-    public List <TextEntity> getAllTexts() {
+    public List <Text> getAllTexts() {
         return textRepository.findAll();
     }
 
-    public List<LanguageEntity> getAllLanguage() {
+    public List<Language> getAllLanguage() {
         return languageRepository.findAll();
     }
 
@@ -26,15 +26,15 @@ public class UsefulTextLanguage {
         this.languageRepository = languageRepository;
     }
 
-    public List<TextEntity> getAllTextByLanguage(String languageName) {
+    public List<Text> getAllTextByLanguage(String languageName) {
         return textRepository.findAllByTextLanguageName(languageName);
     }
 
-    public Optional<TextEntity> getTextById(Long id) {
+    public Optional<Text> getTextById(Long id) {
         return textRepository.findById(id);
     }
 
-    public Optional<LanguageEntity> getLanguageById(Long id) {
+    public Optional<Language> getLanguageById(Long id) {
         return languageRepository.findById(id);
     }
 }

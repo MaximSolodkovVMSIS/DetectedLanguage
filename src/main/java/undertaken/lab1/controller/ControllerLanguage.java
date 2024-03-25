@@ -2,7 +2,7 @@ package undertaken.lab1.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import undertaken.lab1.entity.LanguageEntity;
+import undertaken.lab1.entity.Language;
 import undertaken.lab1.service.UsefulTextLanguage;
 import java.util.List;
 import java.util.Optional;
@@ -17,13 +17,13 @@ public class ControllerLanguage {
     }
 
     @GetMapping("/all")
-    public List<LanguageEntity> getAllLanguages() {
+    public List<Language> getAllLanguages() {
         return usefulTextLanguage.getAllLanguage();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<LanguageEntity>> getNameLanguageById(@PathVariable Long id) {
-        Optional<LanguageEntity> nameLanguage = usefulTextLanguage.getLanguageById(id);
+    public ResponseEntity<Optional<Language>> getNameLanguageById(@PathVariable Long id) {
+        Optional<Language> nameLanguage = usefulTextLanguage.getLanguageById(id);
         if (nameLanguage.isPresent()) {
             return ResponseEntity.ok().body(nameLanguage);
         } else {

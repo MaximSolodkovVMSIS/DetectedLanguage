@@ -6,17 +6,17 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "language_entity")
-public class LanguageEntity {
+@Table(name = "language")
+public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany(mappedBy = "language", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<TextEntity> textLanguages;
+    private List<Text> textLanguages;
 
-    public LanguageEntity() {
+    public Language() {
         //zxc
     }
 
@@ -36,11 +36,11 @@ public class LanguageEntity {
         this.name = name;
     }
 
-    public List<TextEntity> getTextLanguages() {
+    public List<Text> getTextLanguages() {
         return textLanguages;
     }
 
-    public void setTextLanguages(List<TextEntity> textLanguages) {
+    public void setTextLanguages(List<Text> textLanguages) {
         this.textLanguages = textLanguages;
     }
 }
