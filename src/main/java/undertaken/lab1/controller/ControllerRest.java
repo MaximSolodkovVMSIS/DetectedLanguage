@@ -46,7 +46,6 @@ public class ControllerRest {
 
     @GetMapping("/api/v1/detect-language")
     public String detectLanguage(@RequestParam String text) {
-        endpointActionLogger.logDetectLanguageAction(text);
         String cachedLanguage = cache.get(text);
         if (cachedLanguage != null) {
             return cachedLanguage;
@@ -93,7 +92,6 @@ public class ControllerRest {
 
     @PutMapping("/api/v1/text/{id}")
     public String updateText(@PathVariable Long id, @RequestBody UpdateTextModel updateTextModel) {
-        endpointActionLogger.logUpdateTextAction(id, updateTextModel.getNewText());
         return crudOperation.updateText(id, updateTextModel.getNewText());
     }
 
