@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LanguageCache {
-    private final int MAX_CACHE_SIZE = 3;
+    private final int maxCacheSize = 3;
 
-    private final Map<String, String> cache = new LinkedHashMap<String, String>(MAX_CACHE_SIZE, 0.75f, true) { //коэф загрузки
+    private final Map<String, String> cache = new LinkedHashMap<String, String>(maxCacheSize, 0.75f, true) { //коэф загрузки
         @Override
         protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
-            return size() > MAX_CACHE_SIZE;
+            return size() > maxCacheSize;
         }
     };
 
